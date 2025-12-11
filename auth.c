@@ -9,7 +9,7 @@ typedef struct {
     char username[50];
     char password[50];
     char phone[15];      
-    char role[20];       // "admin" or "agent"
+    char role[20];       // "admin" or "agent"//
 } User;
 
 // New function for user sign-up
