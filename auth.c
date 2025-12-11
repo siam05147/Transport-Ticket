@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h> // REQUIRED for exit(0)
+#include <stdlib.h> 
 
 #define PASS_FILE "password.txt"
 #define USER_FILE "users.txt"
@@ -8,7 +8,7 @@
 typedef struct {
     char username[50];
     char password[50];
-    char phone[15];      // ✅ added phone field
+    char phone[15];      
     char role[20];       // "admin" or "agent"
 } User;
 
@@ -19,14 +19,14 @@ void userSignup() {
     
     printf("\n=== USER SIGN UP ===\n");
     
-    // Default role for new users is "agent"
+    
     strcpy(newUser.role, "agent"); 
 
     printf("Enter Name (Username): ");
     scanf("%s", newUser.username);
 
     printf("Enter Phone Number: ");
-    scanf("%s", newUser.phone);  // ✅ now actually reads phone
+    scanf("%s", newUser.phone);  
 
     printf("Enter Password: ");
     scanf("%s", newUser.password);
@@ -56,7 +56,7 @@ char* secureLogin(char* role) {
     fp = fopen(USER_FILE, "r");
     if(fp == NULL) {
         fp = fopen(USER_FILE, "w");
-        fprintf(fp, "admin,admin123,0000000000,admin\n"); // ✅ 4-field format
+        fprintf(fp, "admin,admin123,0000000000,admin\n"); 
         fclose(fp);
         printf("Default admin created (admin/admin123)\n");
     } else {
@@ -74,7 +74,7 @@ char* secureLogin(char* role) {
     while(fscanf(fp, "%[^,],%[^,],%[^,],%s\n", 
                 currentUser.username, 
                 currentUser.password,
-                currentUser.phone,    // ✅ reads 4 fields
+                currentUser.phone,    
                 currentUser.role) != EOF) {
         if(strcmp(username, currentUser.username) == 0 && 
            strcmp(password, currentUser.password) == 0) {
