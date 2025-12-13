@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h> // REQUIRED for exit(0)
+#include <stdlib.h> 
 
 #define PASS_FILE "password.txt"
 #define USER_FILE "users.txt"
@@ -8,8 +8,8 @@
 typedef struct {
     char username[50];
     char password[50];
-    char phone[15];      // ✅ added phone field
-    char role[20];       // "admin" or "agent"
+    char phone[15];      
+    char role[20];       // admin or agent
 } User;
 
 // New function for user sign-up
@@ -26,12 +26,12 @@ void userSignup() {
     scanf("%s", newUser.username);
 
     printf("Enter Phone Number: ");
-    scanf("%s", newUser.phone);  // ✅ now actually reads phone
+    scanf("%s", newUser.phone);  
 
     printf("Enter Password: ");
     scanf("%s", newUser.password);
     
-    // Simple check to prevent duplicate usernames
+    
     if (strcmp(newUser.username, "admin") == 0) {
         printf("Username 'admin' is reserved. Please choose another.\n");
         fclose(fp);
@@ -44,7 +44,7 @@ void userSignup() {
     printf("Sign Up successful! You can now log in.\n");
 }
 
-// Modified function to return the role of the logged-in user
+//  the logged-in user
 char* secureLogin(char* role) {
     char username[50], password[50];
     User currentUser;
@@ -52,11 +52,11 @@ char* secureLogin(char* role) {
     
     printf("\n=== LOGIN ===\n");
     
-    // First run - create admin if no users exist
+    
     fp = fopen(USER_FILE, "r");
     if(fp == NULL) {
         fp = fopen(USER_FILE, "w");
-        fprintf(fp, "admin,admin123,0000000000,admin\n"); // ✅ 4-field format
+        fprintf(fp, "admin,admin123,0000000000,admin\n"); 
         fclose(fp);
         printf("Default admin created (admin/admin123)\n");
     } else {
@@ -74,7 +74,7 @@ char* secureLogin(char* role) {
     while(fscanf(fp, "%[^,],%[^,],%[^,],%s\n", 
                 currentUser.username, 
                 currentUser.password,
-                currentUser.phone,    // ✅ reads 4 fields
+                currentUser.phone,    
                 currentUser.role) != EOF) {
         if(strcmp(username, currentUser.username) == 0 && 
            strcmp(password, currentUser.password) == 0) {
